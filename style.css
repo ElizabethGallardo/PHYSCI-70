@@ -1,5 +1,5 @@
 body {
-    font: 20px Montserrat, sans-serif;
+	font: 20px Montserrat, sans-serif;
     line-height: 1.8;
     color: black;
   }
@@ -12,4 +12,4 @@ p {font-size: 16px;}
   padding-bottom: 70px;
 }
 
-.myimage-80 {width: 80%;}
+.myimage-50 {width: 50%;}
