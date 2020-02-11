@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>PHYSCI 70: Intro to Digital Fabrication </title>
+ 
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href="../style.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container-fluid">
+  <h3>Week 2: 2D Design & Cutting </h3> <br> 
+  <div class="row">
+    <h3>Size-adjustable picture frame</h3>
+    <br><h4>GENESIS</h4>
+      <p> It has been on my mind for a while to get a picture frame for a puzzle picture my mom got me for Christmas. The puzzle picture requires non-standard frame dimensions.  </p>
+
+      <img src="./Media/Puzzle.jpg" class="img-responsive margin" style="width:20%" alt="Sew">
+
+      <p>That led to me thinking of how convenient an adjustable picture frame would be. 
+        <br><b>Here is the final product:</b> </p>
+      <img src="./Media/Final product_wLabels.png" class="img-responsive margin" style="width:60%" alt="Sew">
+      
+      <p>The picture frame can be adjusted for pictures of any size. I like twinkling lights. For that reason, I included pin holes so that the maker of the frame has the option of including sparkling LEDs.</p>
+
+    <br><br><h4>OVERVIEW</h4>
+      <p>Key features:</p><ul style="list-style-type:disc;font-size:14px">
+          <li>High resolution: 1mm adjustability </li>
+          <li>LEDs</li>
+          <li>Structurally sound </li>
+          <li>Can be hung from a wall</li>
+          </ul>
+      <p>Materials:</p><ul style="list-style-type:disc;font-size:14px">
+          <li>Cardboard</li>
+          <li>LED (white, green, blue, yellow)</li>
+          <li>Resistor (100 ohm)</li>
+          <li>Copper tape</li>
+          <li>Wires</li>
+          </ul>
+
+      <img src="./Media/Materials.png" class="img-responsive margin" style="width:30%" alt="Sew">
+
+      <p>Fabrication strategies used:</p><ul style="list-style-type:disc;font-size:14px">
+          <li>Laser cutting 2D shapes</li>
+          <li>Basic circuit assembly</li>
+          <li>Vinyl cutting copper traces (future directions)</li>
+          </ul>
+
+    <br><br><h4>DESIGN & FABRICATION</h4>
+      <p>The frame comes to fruition when all the press-fit pieces are put together. There are 3 types of pieces you need to make the frame: 
+      <br> 1. Frame backing (top and bottom) – supports the picture’s upright position. Contains pin holes for LEDs.</p>
+      <img src="./Media/Frame backing.png" class="img-responsive margin" style="width:30%" alt="Sew">
+
+      <p> 2.Connector (sides and corners) – connects two adjacent pieces together.</p>
+      <img src="./Media/Connector.png" class="img-responsive margin" style="width:30%" alt="Sew">
+
+      <p> 3.  Picture holder (vertical and horizontal) – contains a slot to hold the photograph.</p>
+      <img src="./Media/Picture holder.png" class="img-responsive margin" style="width:30%" alt="Sew">
+
+      <p>The interlocking slots were designed to be 4mm wide and 5mm long. Filleted corners at the entrance of the slots are suggested for larger pieces. In this case, large fillets can harm the integrity of the press-fit lock. Therefore, I refrained from using fillets after trial-and-error.
+      <br>Next to any interlocking slot, I maintained at least 4mm of space before adding any other feature to ensure the lock would not buckle/fail. Smaller spacings may be possible but were not tested. 
+      <br>The focus on minimizing spacing was to keep the frame from becoming bulky. The design was meant to not be bulky yet supply space for decorations (e.g., LEDs, vinyl stickers, and copper traces)
+      <br>All pieces were drawn on Fusion360 and cut on a Thunder Laser Nova24. 
+      </p>
+
+
+
+      <h4>ASSEMBLY</h4>
+      <p>Assembling the frame is simple. 
+
+      <br><br><b>Frame – bottom and top:</b>
+      Use <i>connectors</i> to connect the <i>frame backings</i> together. Use as many as needed to get your desired length. Join the pieces together by pushing one piece into the slot of the other. The pieces are press-fit together and therefore will not wiggle or fall apart – no glue necessary! 
+      <br>
+      Now add the <i>picture holder</i> pieces. Note: the frame backings for the bottom row have LED holes close towards the slot to connect the <i>picture holders</i>. The picture holders have photograph slots on the same side as the interlocking slots. See above for details. 
+      <br>
+      End the row with a <i>connector</i> and corner piece.
+      </p>
+     
+
+      <p><b>Frame – sides:</b>
+      <br>Use <i>connectors</i> to make the sides of the frames by stacking them. At instances of your choice, add a <i>corner connector</i> piece along with a <i>picture holder</i> piece. Add enough <i>picture holders</i> so that the photography is standing straight. The note mentioned above also applies here.</p>
+
+       <img src="./Media/Assembly.png" class="img-responsive margin" style="width:30%" alt="Sew">
+      
+      <p><b>LEDs:</b>
+      Place LEDs between two adjacent <i>frame backings</i> of your choice. Use copper tape to connect the legs of adjacent LEDs or if you prefer not to saturate the frame with lights, place the tape along all the back sides of the frame backings to complete the circuit. Make sure to end at the red and black wires. 
+      <br>A 3V power source supplies enough voltage for one LED; 5V is enough for 2 LEDs. For more LEDs in series, make sure to have a large enough voltage supply. 
+      </p>
+
+           
+<div class="row">
+    <div class="col-sm-4">
+      <img src="./Media/LED (2).jpg" class="img-responsive margin" style="width:80%" alt="Sew">
+    </div>
+    <div class="col-sm-4">
+      <img src="./Media/LED (1).jpg" class="img-responsive margin" style="width:80%" alt="Sew">
+     </div>
+    <div class="col-sm-4">
+      <img src="./Media/LEDsON.jpg" class="img-responsive margin" style="width:80%" alt="Sew">
+    </div>
+</div>
+
+
+
+
+
+
+      <br><p> Go back to <a href='../index.html'>main page</a>. </p>
+   
+  </div>
+
+  
+  
+</div>
+
+</body>
+</html>
