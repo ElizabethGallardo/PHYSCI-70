@@ -23,25 +23,23 @@
   <h3>Week 4: Microcontroller Programming </h3> <br> 
   <div class="row">
 
+    <video controls>
+    <source src="demo.mp4" type="video/mp4">
+    </video>
+
       <p>I designed an button-activated GO! signal. The design was inspired by NASCAR's countdown lights which signal the start of a race. 
     <br>
       The display either turns on the green LEDs sequentially or blinks the red LEDs. It is made up of an ItsyBitsy M4 (SAMD51) board along with jumper calbes, a BLANK resistor, push botton, jumper wires, and several LEDs. Arduino was used to program the ItsyBitsy. 
     <br>
       Here is the Arduino code: </p> <a href='/ArduinoCode Week_4_Microcontroller' download > Download my file! </p> </a>
-    <br><br><br>
+    <br><br>
       
-      <img src="./Display_Top View.jpg" class="img-responsive margin" style="width:50%" alt="Display_Top"><p> Display on set up on breadboard (Perspective View)</p>
+      <img src="./Display_Top View.jpg" class="img-responsive margin" style="width:40%" alt="Display_Top"><p> Display on set up on breadboard (Perspective View)</p>
       
-      <img src="./Display_Perspective View.jpg" class="img-responsive margin" style="width:50%" alt="Display_Perspective"><p> Display on set up on breadboard (Top View)</p>
+      <img src="./Display_Perspective View.jpg" class="img-responsive margin" style="width:40%" alt="Display_Perspective"><p> Display on set up on breadboard (Top View)</p>
 
     <br><br><br>
-      <p> <pre><code class="language-arduino">
-/*
- * Code written by: Elizabeth GH
- * 02/24/2020
- */
-
-
+    <pre><code class="language-arduino">
 #define RED_LEDs 7
 #define LED_GREEN_1 9
 #define LED_GREEN_2 10
@@ -102,7 +100,7 @@ void loop() {
       delay(500); 
   }
 }
-      </code></pre> </p>
+</code></pre>
     
       <br><p> Go back to <a href='../index.html'>main page</a>. </p>
      
