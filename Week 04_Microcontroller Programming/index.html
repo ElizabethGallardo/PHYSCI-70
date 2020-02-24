@@ -11,23 +11,91 @@
   <link href="../style.css" rel="stylesheet">
 
 
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
+<!--   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script>
+  <script>hljs.initHighlightingOnLoad();</script> -->
 
 </head>
 <body>
 
 <div class="container-fluid">
-  <h3>Week 1: Electronics </h3> <br> 
+  <h3>Week 4: Microcontroller Programming </h3> <br> 
   <div class="row">
-    
+
+      <p>I designed an button-activated GO! signal. The design was inspired by NASCAR's countdown lights which signal the start of a race. 
+    <br>
+      The display either turns on the green LEDs sequentially or blinks the red LEDs. It is made up of an ItsyBitsy M4 (SAMD51) board along with jumper calbes, a BLANK resistor, push botton, jumper wires, and several LEDs. Arduino was used to program the ItsyBitsy. 
+    <br>
+      Here is the Arduino code: </p> <a href='/ArduinoCode Week_4_Microcontroller' download > Download my file! </p> </a>
+
       <p> <pre><code class="language-arduino">
-      void loop(){
-        int i = 2;
-        int j = 3;
+/*
+ * Code written by: Elizabeth GH
+ * 02/24/2020
+ */
+
+
+#define RED_LEDs 7
+#define LED_GREEN_1 9
+#define LED_GREEN_2 10
+#define LED_GREEN_3 11
+#define BUTTON 12
+
+void setup() {
+  // // put your setup code here, to run once:
+  
+  // initialize digital pins 
+  pinMode(LED_GREEN_1, OUTPUT); // pin 9
+  pinMode(LED_GREEN_2, OUTPUT); // pin 10
+  pinMode(LED_GREEN_3, OUTPUT); // pin 11
+  pinMode(RED_LEDs, OUTPUT);    // all RED LEDs
+  pinMode(BUTTON, INPUT);
+
+}
+
+void loop() {
+  // // put your main code here, to run repeatedly:
+  
+  int butt = 0;
+  butt = digitalRead(BUTTON);
+  if (butt == HIGH)
+  {
+      //Turning ON LEDs sequentially:
+      digitalWrite(LED_GREEN_1, HIGH);   // turn ON GREEN LED 1
+      delay(250);                        // wait for a 250 ms
+      
+      int val = 0;
+      val = digitalRead(LED_GREEN_1);
+      if (val == HIGH) 
+      { 
+      digitalWrite(LED_GREEN_2, HIGH);   // turn ON GREEN LED 2
+      delay(250);                       
+ 
+      val = digitalRead(LED_GREEN_2);
+      if (val == HIGH)
+      {
+      digitalWrite(LED_GREEN_3, HIGH);   // turn ON GREEN LED 3
+      delay(250);                        
+      digitalWrite(LED_GREEN_1, LOW); 
+      digitalWrite(LED_GREEN_2, LOW); 
+      digitalWrite(LED_GREEN_3, LOW);
+      delay(250); 
       }
+      }
+   }
+
+  if (butt == LOW) 
+  {  
+      digitalWrite(LED_GREEN_1, LOW); 
+      digitalWrite(LED_GREEN_2, LOW); 
+      digitalWrite(LED_GREEN_3, LOW); 
+      digitalWrite(RED_LEDs, HIGH);   // turn ON all RED LEDs
+      delay(2500);                    // wait for a second
+      digitalWrite(RED_LEDs, LOW);    // turn the LED off by making the voltage LOW
+      delay(500); 
+  }
+}
       </code></pre> </p>
 
 
@@ -40,10 +108,7 @@
       <br><p> Go back to <a href='../index.html'>main page</a>. </p>
    
    
-  </div>
-
-  
-  
+  </div>  
 </div>
 
 </body>
