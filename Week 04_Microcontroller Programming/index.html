@@ -24,24 +24,24 @@
   <div class="row">
 
     <video controls loop>
-    <source src="GOstop_GIF.mp4" type="video/mp4">
+    <source src="GOstop_GIF.mp4" type="video/mp4" >
     </video>
-
+<br><br>
       <p>I designed an button-activated GO! signal. The design was inspired by NASCAR's countdown lights which signal the start of a race. 
     <br>
       The display either turns on the green LEDs sequentially or blinks the red LEDs. It is made up of an ItsyBitsy M4 (SAMD51) board along with jumper calbes, a BLANK resistor, push botton, jumper wires, and several LEDs. Arduino was used to program the ItsyBitsy. 
     <br>
       Here is the Arduino code: </p> <a href='ArduinoCode Week_4_Microcontroller.ino' download > Download my file! </p> </a>
-    <br><br>
+    <br>
       
       <figure>
-        <img src="./Display_Top View.jpg" class="img-responsive margin" style="width:40%" alt="Display_Top" > 
+        <img src="./Display_Top View.jpg" class="img-responsive margin" style="width:30%" alt="Display_Top" > 
         <figcaption>Display on set up on breadboard (Top View)</figcaption>
       </figure>
 
       
       <figure>
-        <img src="./Display_Perspective View.jpg" class="img-responsive margin" style="width:40%" alt="Display_Perspective" >
+        <img src="./Display_Perspective View.jpg" class="img-responsive margin" style="width:30%" alt="Display_Perspective" >
          <figcaption > Display on set up on breadboard (Perspective View)</figcaption>
       </figure>
 
@@ -52,8 +52,6 @@
           #define LED_GREEN_2 10
           #define LED_GREEN_3 11
           #define BUTTON 12
-          </code></pre>
-    <pre><code class="language-arduino">
 
           void setup() {
             // // put your setup code here, to run once:
