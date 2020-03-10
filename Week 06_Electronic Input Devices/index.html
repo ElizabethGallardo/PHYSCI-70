@@ -18,7 +18,7 @@
   <h4> <b> Motion tracking based on capactive sensing  </h4></b><br> 
   <p> Motion tracking is used in many applications. This version resembles a 2D sketchpad. Hover your finger with a copper sticker over the sketch area and the sensor will sense the paths your finger has taken over a period of time and display. </p>
 
-  <h4> How the sensor works  </h4><br> 
+  <h4> How the sensor works  </h4>
   <p> The sketch pad is made up of an array of capacitors. When another capacitor plate, in this case the Cu sticker (or even just your finger!), comes close to the array, it will cause a change in voltage in one of the capacitors in the array that we can detect allowing us to identify where the finger was hovering over. 
   <img src="./Circuit_Final product_array.jpg" class="img-responsive margin" style="width:40%">
   <p> Figure: Sketchpad  </p>
@@ -66,9 +66,11 @@
   <img src="./Improper form.PNG" class="img-responsive margin" style="width:50%">
   <p> Figure: Here are some examples of improper technique involving a bend in posture where there should be a straight posture instead. (<a href='https://www.runtastic.com/blog/en/bodyweight-exercise-mistakes/'>most common bodyweight exercise mistakes by Adidas</a>) </p>
   <img src="./Exercise sensor_final.jpg" class="img-responsive margin" style="width:40%">
-  <p> Figure: (left) Exercise correcting band prototype. (right) Example showing how the display will help the trainee improve their form. </p>
+  <p> Figure: (left) Exercise correcting band prototype. (right) Example showing how the display will help the trainee improve their form. </p> 
+  <img src="./Final Product.PNG" class="img-responsive margin" style="width:40%">
+  <p> Exercise band prototype. Flexible tube covered in light omitting wrapping. Red LED on left end, photoresistor on the right end. </p> 
 
-  <h4> How the sensor works  </h4><br>
+  <h4> How the sensor works  </h4>
   <p> This protoype is made up a tube with an LED on one end and a photoresistor on the other. When the tube is straight, all the light from the LED is captured by the photoresistor; as the tube bends, the amount of light that reaches the photoresistor is proportional to the amount of bending. 
 
   Inspiration for this work came from the Harvard Microrobotics Lab (<a href='https://cbteeple.github.io/papers/teeple2018_soft_sensors.pdf'> check it out here! </a>) 
@@ -80,15 +82,19 @@
   <img src="./Exercise sensor_circuit.jpg" class="img-responsive margin" style="width:30%">
   <img src="./Bend_circuit.jpg" class="img-responsive margin" style="width:30%">
 
-  <h4> Code logic </h4><br> 
+  <h4> Code logic </h4>
+  <p> coming soon...</p> <br> 
 
-  <h4> Calibration </h4><br>
+  <h4> Calibration </h4>
   <p> A photoresistor's resistance decreases with an increase in light. With no bend the resistance (R_min) is close to 0 ohms and therefore the circuit will output close to 0V. With a large bend like 90 degrees where no light passes to the opposite end of the tube, resistance (R_max) will be high resulting an output voltage signal of V_max. 
 
   We conducted some experiments to note V_max, R_max, R-min and calibrate the system with a plot of Bend vs V_out. </p>
+  <img src="./Test setup_2.jpg" class="img-responsive margin" style="width:40%">
+  <img src="./Test setup.jpg" class="img-responsive margin" style="width:40%">
+  <p>Figure: Test setup</p>
   <img src="./Calibration.PNG" class="img-responsive margin" style="width:40%">
 
-  <h4> Hardware </h4><br>
+  <h4> Hardware </h4>
   <img src="./Bend_circuit and device.jpg" class="img-responsive margin" style="width:40%">
   <p> Figure: Hardware components used to build exercise band prototype. 
   Photoresistor - 
