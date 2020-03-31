@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>PHYSCI 70: Intro to Digital Fabrication </title>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href="../style.css" rel="stylesheet">
+
+  <style>
+    .headers{
+      border-style: double none double none;
+      border-width: 6px;
+      border-color: red;
+      font-size:x-large;
+      text-align: center;} 
+      div.center {
+        text-align: center;
+      }
+      .responsive {
+        width: 100%;
+        height: auto;
+      }
+
+      .container {
+        position: relative;
+        font-family: Arial;
+      }
+
+      .text-block {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        background-color: black;
+        color: white;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+    </style>
+
+  </head>
+  <body>
+
+    <div class="container" style = "padding-bottom: 20px;" >
+      <h2>Week 8: Electronic Output Devices </h2>
+      <img src="./garden3.PNG" style="width:100%;"> 
+      <div class="text-block" style="font-size: 24px;">
+        SPRINKLER <br>
+        SYSTEM <br>
+        PROJECT <br>
+      </div>
+    </div>
+
+    <div>
+      <p class="headers"> <font size="5"> DESIGN. </font></p>
+      <div style = "padding-left: 20px; padding-right: 20px">
+        <table>
+          <tr>
+            <td style = "width:50%; text-align: center;padding-left: 20px;">
+              <b> Sprinkler System: </b> <br>
+              This sprinkler system is an easy to build, scalable system made up of small hoses and drippers that can be placed inside pots to water both large and small plants. The system is to turn ON every 12 hours. Save time by not having to do this monotonous job yourself and ensure your plants are healthy! <br>
+
+              The idea for the irrigation system is to have lines of small, discrete tubing going from pot to pot in your patio. At each pot, a T connector adds a juntion where a small piece of hosing sticks out with a dripper at the end that lets small amounts of water leak out and water plants. Add more hosing and Ts to accomadate all your plants.<br>
+
+              Some electronics is needed to control when the system turns on and off. the hose is attached to a water supply (like a hose, it can be ted outside.) When the sprinkler system decides to turn on the valves are given the signal and allow water to pass through. <br> 
+
+            </td>
+            <td>
+              <table>
+                <tr><td style="width:50%;"><img src="./design.PNG" style="width:100%;" align="left"></td></tr>
+                <tr><td></tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+
+        <p class="headers"> <font size="5"> BILL OF MATERIALS. </font></p>
+        <div style = "padding-left: 20px; padding-right: 20px">
+          <table>
+            <tr>
+              <td>
+                <table>
+                  <caption align="bottom"> Hydraulic components (top), electonics (bottom) </caption> 
+                  <tr><td style="width:40%;"><img src="./components_spread_2.PNG" style="width:100%;" align="left"></td></tr>
+                  <tr><td></tr>
+                  </table>
+                </td>
+                <td style = "width:60%; text-align: left;">
+                  
+In order for the sprinkler system to turn ON/off automatically, the following components must be purchased:
+                 <ul>
+                   <li> Valve: Orbit 57280 3/4-Inch FPT Heavy-Duty In-line Sprinkler Valve <a href='https://www.amazon.com/gp/product/B01MG1VV2M/ref=ppx_yo_dt_b_asin_title_o01_s00?ie=UTF8&psc=1'> (buy here)</a>.  </li> 
+                   <li>12V Solenoid Valve - 3/4" <a href='https://www.sparkfun.com/products/10456'> (buy here)</a>. 
+                   </li>
+                   <li> (a) Bitsy microcontroller </li>
+                   <li> (b) Push botton </li>
+                   <li> (c) FET </li>
+                   <li> (d) Diode </li>
+                   <li> (e) Resistors </li>
+                   <li> 12 V power supply with adapter </li>
+                   <li> Circuit (bread) board </li>
+                 </ul> 
+                  While looking for parts to build the sprinkler system, we found a similar design to ours on Amazon. The bulk of the components come in <a href='https://www.amazon.com/gp/product/B083SLZ8RT/ref=ppx_yo_dt_b_asin_title_o02_s00?ie=UTF8&psc=1'>this kit</a>. From this kit, we used the following parts: 
+                  <ul>
+                   <li> (A) 3/4’’ 2-Way Threaded Faucet Connector  </li>
+                   <li> (B) 2-Way Tubing Connector </li>
+                   <li> (C) End Closure </li>
+                   <li> (D) 1/4'' Barbed Tee Pipe Connector  </li>
+                   <li> (E) Pressure-compensating Dripper </li>
+                   <li> (F) 1/4'' PVC Tube - 131ft </li>
+                 </ul> 
+                 
+               </td>
+             </tr>
+           </table>
+         </div>
+
+         <p class="headers"> <font size="5"> CODE. </font></p>
+         <div style = "padding-left: 20px; padding-right: 20px">
+          <table>
+            <tr>
+              <td style="width:40%;">
+                <table>
+                  <caption align="bottom"> Download Ardunio code <a href='./sprinkler' download > HERE!</caption>
+                    <tr>
+                      <td><img src="./sprinklerCode.PNG" style="width:100%;" align="left"></td>    
+                    </tr>
+                  </table>
+                </td>
+
+                <td style = "width:30%; text-align: left;padding-left: 20px;padding-right: 20px">
+                  We programmed the valves to open automatically every 12 hours (or 43200000 ms). A push button is included so that the user can turn the sprinkler system ON or off whenever desired. Check out the GIF! If the device is ON and the button is pushed it will turn off. The opposite is also true. <br>
+
+                  A FET was used for every valve to act as a switch to allow higher voltages and current to pass through to the valve. The <a href='https://www.sparkfun.com/datasheets/Robotics/Aqua%20Tech%20Solenoid%20Valves.pdf'> data sheet </a> for the valve is available. <br>
+
+                  In the prototype (pictures to the right), no valves were used, LEDs are instead taking their place. 
+                  
+                </td>
+
+                <td style="width:30%;" >
+                 <table>
+                  <tr><td><video controls><source src="circuitGif.gif" type="video/mp4"> </video></td></tr>
+                  <tr><td style = "padding-bottom: 10px;"> <img src="./circuitSideView.JPG" style="width:100%;" align="center"> </td></tr>
+                  <tr><td style = "padding-bottom: 10px;"> <img src="./circuitTopView.JPG" style="width:100%;" align="left"></td></tr>
+                  </table> 
+                </td>
+              </tr>
+            </table>
+          </div>
+
+          <p class="headers"> <font size="5"> OUTPUT DEVICES OVERVIEW. </font></p>
+          <div style = "padding-left: 20px; padding-right: 20px">
+            <table>
+              <tr>
+                <td style="width:40%;padding-right: 20px">
+                  <table> 
+                   <caption align="bottom"> DC motor circuit </caption> 
+                   <tr> 
+                    <td><img src="./motor.PNG" style="width:100%;" align="center"></td>
+                  </tr>
+                </table>
+              </td>
+              <td> Playing around with a DC motor helped me understand comopnentents of this circuit better. For instance, incorporating flyback diodes to prevent spiking voltages that could ruin components in the circuit was something I got to investigate further. (Check these 2 <a href='https://roberthart56.github.io/SCFAB/SC_lab/Output_Devices/FET/index.html'> reference 1 </a> and <a href='https://en.wikipedia.org/wiki/Flyback_diode'> 2 </a> )</td>
+            </tr>
+          </table>
+        </div>
+
+            <p class="headers"> <font size="5"> MORE IDEAS. POTENTIAL IMPROVEMENTS </font></p>
+            <div style = "padding-left: 20px; padding-right: 20px">
+              Flow meters - Track how much water is being released. A more complex controller that includes a feedback loop can be integrated into the system to ensure the propoer amount of water is dispensed with every cycle.
+              <ul>
+               <li> Flow meter 1 <a href='https://www.amazon.fr/UIOTEC-YF-S401-0-5-5L-Flowmeter-Counter-White/dp/B07F2CTKFT/ref=sr_1_18?__mk_fr_FR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=flowmeter&qid=1584915273&sr=8-18&swrs=32BB663C772764F2849744C3CE8DEC37'> (buy here)</a>.  </li> 
+               <li> Flow meter 2 <a href='https://www.amazon.fr/Thingnovation-Compteur-commutateur-contrôle-Flowmeter/dp/B01F04T1KU/ref=sr_1_1?__mk_fr_FR=%C3%85M%C3%85%C5%BD%C3%95%C3%91&dchild=1&keywords=flowmeter&qid=1584915273&sr=8-1&swrs=32BB663C772764F2849744C3CE8DEC37'> (buy here)</a>. 
+               </li>
+             </ul>
+             Include sensors - Sense if it is raining outside. If it is raining, then use an interrupt in the code to turn the sprinkler system off.
+             <ul>
+               <li> Humidity sensor </li>
+               <li> Photoresistor </li>
+             </ul> 
+           </div>
+
+           <br><p> Go back to <a href='../index.html'>main page</a>. </p> 
+         </div>
+       </div>
+     </body>
+     </html>
+
+
+
+
+
+
+     <!-- EXAMPLE CODE -->
+  <!--     <img src="./Frijolitos.png" class="img-responsive margin" style="width:20%" alt="Sew">
+
+      <p> And here is a <a href='../index.html'>link</a>.
+
+      </p> -->
