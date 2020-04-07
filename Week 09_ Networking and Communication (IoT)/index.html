@@ -50,7 +50,7 @@
 
   For a deeper understanding of radio communication, I set up 2 ItsyBitsy boards like so. <br>
 
-  <img src="./radioModuleCircuit.jpg" class="img-responsive margin" style="width:50%" align="center">
+  <img src="./radioModuleCircuit.jpg" class="img-responsive margin" style="width:100%" align="center">
 
   Unfortunatley, one of the radio modules failed. The <a href='https://www.mouser.com/ProductDetail/SparkFun/WRL-13678?qs=WyAARYrbSnZdmwzlRTs1Tw%3D%3D&gclid=EAIaIQobChMIyvqO9drU6AIVGf_jBx2ySwRSEAQYASABEgKwu_D_BwE'> NRF24L01 chip </a> got really hot immediatly as I plugged the ItsyBitsy into power. Hopeful that the chip was not broken, I double checked the wiring. It all seemed to be good. I plugged the ItsyBitsy into another computer but without better luck, the chip was still burning to the touch. I applied 5V to the Vcc input and grounded the GRND input, seeing that it was getting hot, I can only assume the chip was broken which is causing it to short out. <br>
 
@@ -66,8 +66,8 @@ padding-left: 20%;">
 <h1> WIRED COMMUNICATION - SERIAL </h1>
 Used <a href='https://roberthart56.github.io/SCFAB/SC_lab/Networking/networking/USART/index.html'></a> this tutorial to start off. <br>
 
-<img src="./serialCommunication_top.jpg" class="img-responsive margin" style="width:50%" align="center">
-<img src="./serialCommunication_side.jpg" class="img-responsive margin" style="width:50%" align="center">
+<img src="./serialCommunication_top.jpg" class="img-responsive margin" style="width:100%" align="center">
+<img src="./serialCommunication_side.jpg" class="img-responsive margin" style="width:100%" align="center">
 
 In my setup I used a potentiometer to dictate the brightness of an LED. Similar transiever and reciever code was used to program the respective microcontrollers. While dubgging the system, 2 laptops were used allowing for 2 instances of Arduino to open simultaneously with their corresponding serial monitors. <br> <!-- It was also suggested to use DOWNLOAD.  -->
 
@@ -130,8 +130,8 @@ I was disappointed that I didn't get the chance to build a wireless communicatio
 
 However, this idea had its flaws and I did not get it to work. Here is what I learned and ideas for how to make it work. <br>
 
-<img src="./ledCommunication_top.jpg" class="img-responsive margin" style="width:50%" align="center">
-<img src="./ledCommunication_side.jpg" class="img-responsive margin" style="width:50%" align="center">
+<img src="./ledCommunication_top.jpg" class="img-responsive margin" style="width:100%" align="center">
+<img src="./ledCommunication_side.jpg" class="img-responsive margin" style="width:100%" align="center">
 
 The LED flickered a bit which was misleading because it was not actually sending real HIGHs and lows. <br>
 
