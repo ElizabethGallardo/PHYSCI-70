@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>PHYSCI 70: Intro to Digital Fabrication </title>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href="../style.css" rel="stylesheet">
+  <!-- ARDUION SNIPPET -- https://nathanmelenbrink.github.io/ps70/04_arduino/documentation -->
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/arduino-light.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.8.0/highlight.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/arduino.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- ARDUION SNIPPET -- https://nathanmelenbrink.github.io/ps70/04_arduino/documentation -->
+
+</head>
+<body>
+
+  <div class="container-fluid">
+    <h3>Week 9: Networking and Communication (IoT) </h3> <br> 
+    <div class="row" 
+    style="border: 1px solid yellow;
+    background-color: lightyellow;
+    padding-top: 30px;
+    padding-right: 80px;
+    padding-bottom: 30px;
+    padding-left: 80px;">
+
+    <b> This weeks topics focused on communication. This is a new topic for me and I have realized it opens up many doors for new applications!
+
+      I review what the following are, how they work, and how to implement them on the Itsy Bitsy:
+      - UART communcation
+      - serial communication
+    - radio communication </b>
+
+  </div>
+
+
+  <div class="row" 
+  style=" padding-top: 30px;
+  padding-right: 200px;
+  padding-left: 200px;">
+
+
+  <h1> WIRELESS COMMUNICTIONS - RADIO  </h1>
+  In order to understand radio communication. I first review serial communication and its protocols. Check out these links: ADD LINK1, LINK2, LINK3.<br> <br>
+
+  For radio communication check out this link. <br><br>
+
+  For a deeper understanding of radio communication, I set up 2 ItsyBitsy boards like so. <br><br>
+
+  <img src="./radioModuleCircuit.JPG" class="img-responsive margin" style="width:50%" align="center">
+
+  Unfortunatley, one of the radio modules failed. The <a href='https://www.mouser.com/ProductDetail/SparkFun/WRL-13678?qs=WyAARYrbSnZdmwzlRTs1Tw%3D%3D&gclid=EAIaIQobChMIyvqO9drU6AIVGf_jBx2ySwRSEAQYASABEgKwu_D_BwE'> NRF24L01 chip </a> got really hot immediatly as I plugged the ItsyBitsy into power. Hopeful that the chip was not broken, I double checked the wiring. It all seemed to be good. I plugged the ItsyBitsy into another computer but without better luck, the chip was still burning to the touch. I applied 5V to the Vcc input and grounded the GRND input, seeing that it was getting hot, I can only assume the chip was broken which is causing it to short out. <br><br>
+
+  I was mostly interested in wireless communication for this weeks assignment so check out the last section of this page to see how I satisfied that yearning. <br><br>
+</div>
+
+
+<div class="row" 
+style=" padding-top: 30px;
+padding-right: 200px;
+padding-left: 200px;">
+
+<h1> WIRED COMMUNICATION - SERIAL </h1>
+Used <a href='https://roberthart56.github.io/SCFAB/SC_lab/Networking/networking/USART/index.html'></a> this tutorial to start off.
+
+<img src="./serialCommunication_top.JPG" class="img-responsive margin" style="width:50%" align="center">
+<img src="./serialCommunication_side.JPG" class="img-responsive margin" style="width:50%" align="center">
+
+In my setup I used a potentiometer to dictate the brightness of an LED. Similar transiever and reciever code was used to program the respective microcontrollers. While dubgging the system, 2 laptops were used allowing for 2 instances of Arduino to open simultaneously with their corresponding serial monitors. <!-- It was also suggested to use DOWNLOAD.  -->
+
+<a href='./RecievingBoard.ino ' download > HERE! </a>  
+<a href='./transmit_serial ' download > HERE! </a> 
+
+<pre><code class="language-arduino">
+  void loop(){
+  int i = 2;
+  int j = 3;
+}
+</code></pre>
+
+The <b> key takeaways </b> from building this simple circuit were:
+1. The output from the RX pin is a value from 0-255 which corresponds to 0-Vcc. In our case that is 0-3.3V. If you send value larger than 255, the reciever will read them in starting from 0 to 255 again. For example 256 from TX would be 0 in the RX, 257 = 1, 28 = 2, and so on. This occurs because in the UART protocol we are only sending 8- bits. Values larger than that will be cut off and only the least significant digits will be sent.
+</div>
+
+<div class="row" 
+style=" padding-top: 30px;
+padding-right: 200px;
+padding-left: 200px;">
+
+<h1> WIRELESS COMMUNCATION - LED + PHOTOTRANSISTOR </h1>
+
+I was disappointed that I didn't get the chance to build a wireless communication system. There are alot of cool applications once you can communicate with another microcontroller wirelessly. With this spirit, I decided to explore how to communicate wirelessly without the radio modules. I decided to try to use and LED and a photoresistor. The idea being that the LED would transmit signals by blinking ON and off and the photoresistor would register these as bytes of information. In essence, the LED and photoresistor would take the place of the wire connecting TX to RX in the previous section. 
+
+However, this idea had its flaws and I did not get it to work. Here is what I learned and ideas for how to make it work. 
+
+<img src="./ledCommunication_top.JPG" class="img-responsive margin" style="width:50%" align="center">
+<img src="./ledCommunication_side.JPG" class="img-responsive margin" style="width:50%" align="center">
+
+The LED flickered a bit which was misleading because it was not actually sending real HIGHs and lows. <br>
+
+The <b> key takeaways </b> from building this circuit were: <br>
+1. The LED flickered a bit which was misleading because it was not actually sending real HIGHs and lows. <br>
+
+2. The signal from the TX port cannot be delivered through the LED. The frequency at which the signal from the TX port is being transmitted is too fast. The LED interprets this signal in the same way it interprets a PWM wave. It cannot turn ON and off completely. Instead, the light just dims. THe photo resistor on the other hand, can only read in a value from 0 to 255 instead of a fully on or off. the miscommunication comes from when the LED is supposed to be off but instead output a dim light that was over the threshold for the RX to mistakenly read a high (ON). The root of this problem is the high frequency of the TX. I tried defining the baud rate to 300 bits per second but that was still not slow enough. <br>
+
+3. To use this setup, the LED should be connected to an analog input. With software, we can detect rising or falling edges instead of lows or highs. In this way, we don't care about the actual output from the LED but instead only the relative change. However, the catch here is that you would have to develop your own protocol which is not ideal and why we like UART - because it is already defined for us! 
+
+
+</div>
+
+</div>
+
+<br><p> Go back to <a href='../index.html'>main page</a>. </p>   
+</div>
+
+</body>
+</html>
