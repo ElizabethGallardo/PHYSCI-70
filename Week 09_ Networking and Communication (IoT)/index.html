@@ -39,17 +39,14 @@
   </div> -->
 
 
-<div class="row" 
-style=" padding-top: 20px;
-padding-right: 20%;
-padding-left: 20%;">
+  <div class="row" 
+  style=" padding-top: 20px;
+  padding-right: 20%;
+  padding-left: 20%;">
 
 
   <h1> WIRELESS COMMUNICTIONS - RADIO  </h1>
-  In order to understand radio communication. I first review serial communication and its protocols from the class website. Check out these links:  <a href='https://learn.sparkfun.com/tutorials/serial-communication/all'> Serial communication </a> , <br>
-  <a href='https://learn.sparkfun.com/tutorials/serial-peripheral-interface-spi'> SPI </a>, <br>
-  <a href='https://lastminuteengineers.com/nrf24l01-arduino-wireless-communication/'> </a> Radio communication <br> 
-  <a href='https://roberthart56.github.io/SCFAB/SC_lab/Networking/networking/radio/index.html'> More on radio communication </a> <br>
+  In order to understand radio communication. I first review serial communication and its protocols from the class website. Check out these links:  <a href='https://learn.sparkfun.com/tutorials/serial-communication/all'> Serial communication </a> , <a href='https://learn.sparkfun.com/tutorials/serial-peripheral-interface-spi'> SPI </a>, <a href='https://lastminuteengineers.com/nrf24l01-arduino-wireless-communication/'> Radio communication </a>, <a href='https://roberthart56.github.io/SCFAB/SC_lab/Networking/networking/radio/index.html'> More on radio communication </a> <br>
 
   For a deeper understanding of radio communication, I set up 2 ItsyBitsy boards like so. <br>
 
@@ -75,35 +72,35 @@ Used <a href='https://roberthart56.github.io/SCFAB/SC_lab/Networking/networking/
 In my setup I used a potentiometer to dictate the brightness of an LED. Similar transiever and reciever code was used to program the respective microcontrollers. While dubgging the system, 2 laptops were used allowing for 2 instances of Arduino to open simultaneously with their corresponding serial monitors. <br> <!-- It was also suggested to use DOWNLOAD.  -->
 
 <!-- <a href='./RecievingBoard.ino ' download > HERE! </a>  
-<a href='./transmit_serial.ino ' download > HERE! </a>  -->
+  <a href='./transmit_serial.ino ' download > HERE! </a>  -->
 
-Recieving code:
-<pre><code class="language-arduino">
-const int LED_pin = 9;
+  Recieving code:
+  <pre><code class="language-arduino">
+    const int LED_pin = 9;
 
-void setup() {
-  
-  Serial.begin(0);        //for the USB serial devices, this baud rate is meaningless - can be "0"
-  Serial1.begin(300);      //this is the USART SERIAL.  On SAM boards, like ItsyBitsy and D11, this is called "Serial1"
-  pinMode(LED_pin, OUTPUT);  // sets the pin as output
-}
-
-void loop() {
-  while (!Serial1.available()) {      //wait until serial from UART is available.
+    void setup() {
+    
+    Serial.begin(0);        //for the USB serial devices, this baud rate is meaningless - can be "0"
+    Serial1.begin(300);      //this is the USART SERIAL.  On SAM boards, like ItsyBitsy and D11, this is called "Serial1"
+    pinMode(LED_pin, OUTPUT);  // sets the pin as output
   }
 
-  byte rec_byte =  Serial1.read();    //Here is where the incoming byte is read.
-  Serial.println(rec_byte);       //for diagnosing using USB serial
-  analogWrite(LED_pin , rec_byte); 
+  void loop() {
+  while (!Serial1.available()) {      //wait until serial from UART is available.
+}
+
+byte rec_byte =  Serial1.read();    //Here is where the incoming byte is read.
+Serial.println(rec_byte);       //for diagnosing using USB serial
+analogWrite(LED_pin , rec_byte); 
 }
 </code></pre>
 
 Transmitting code:
 <pre><code class="language-arduino">
-const int pot_pin = 2;
-const int led_pin = 1;
+  const int pot_pin = 2;
+  const int led_pin = 1;
 
-void setup() {
+  void setup() {
   Serial.begin(0);        //for the USB serial devices, this baud rate is meaningless - can be "0"
   Serial1.begin(300);      //this is the USART SERIAL.  On SAM boards, like ItsyBitsy and D11, this is called "Serial1"
 }
@@ -117,7 +114,9 @@ delay(10);
 </code></pre>
 
 The <b> key takeaways </b> from building this simple circuit were: <br>
-1. The output from the RX pin is a value from 0-255 which corresponds to 0-Vcc. In our case that is 0-3.3V. If you send value larger than 255, the reciever will read them in starting from 0 to 255 again. For example 256 from TX would be 0 in the RX, 257 = 1, 28 = 2, and so on. This occurs because in the UART protocol we are only sending 8- bits. Values larger than that will be cut off and only the least significant digits will be sent. <br>
+<ul>
+  <li>The output from the RX pin is a value from 0-255 which corresponds to 0-Vcc. In our case that is 0-3.3V. If you send value larger than 255, the reciever will read them in starting from 0 to 255 again. For example 256 from TX would be 0 in the RX, 257 = 1, 28 = 2, and so on. This occurs because in the UART protocol we are only sending 8- bits. Values larger than that will be cut off and only the least significant digits will be sent.</li>
+</ul>
 </div>
 
 <div class="row" 
@@ -137,12 +136,13 @@ However, this idea had its flaws and I did not get it to work. Here is what I le
 The LED flickered a bit which was misleading because it was not actually sending real HIGHs and lows. <br>
 
 The <b> key takeaways </b> from building this circuit were: <br>
-1. The LED flickered a bit which was misleading because it was not actually sending real HIGHs and lows. <br>
+<ul>
+  <li>The LED flickered a bit which was misleading because it was not actually sending real HIGHs and lows. </li>
 
-2. The signal from the TX port cannot be delivered through the LED. The frequency at which the signal from the TX port is being transmitted is too fast. The LED interprets this signal in the same way it interprets a PWM wave. It cannot turn ON and off completely. Instead, the light just dims. THe photo resistor on the other hand, can only read in a value from 0 to 255 instead of a fully on or off. the miscommunication comes from when the LED is supposed to be off but instead output a dim light that was over the threshold for the RX to mistakenly read a high (ON). The root of this problem is the high frequency of the TX. I tried defining the baud rate to 300 bits per second but that was still not slow enough. <br>
+  <li> The signal from the TX port cannot be delivered through the LED. The frequency at which the signal from the TX port is being transmitted is too fast. The LED interprets this signal in the same way it interprets a PWM wave. It cannot turn ON and off completely. Instead, the light just dims. THe photo resistor on the other hand, can only read in a value from 0 to 255 instead of a fully on or off. the miscommunication comes from when the LED is supposed to be off but instead output a dim light that was over the threshold for the RX to mistakenly read a high (ON). The root of this problem is the high frequency of the TX. I tried defining the baud rate to 300 bits per second but that was still not slow enough. </li>
 
-3. To use this setup, the LED should be connected to an analog input. With software, we can detect rising or falling edges instead of lows or highs. In this way, we don't care about the actual output from the LED but instead only the relative change. However, the catch here is that you would have to develop your own protocol which is not ideal and why we like UART - because it is already defined for us! <br>
-
+  <li> To use this setup, the LED should be connected to an analog input. With software, we can detect rising or falling edges instead of lows or highs. In this way, we don't care about the actual output from the LED but instead only the relative change. However, the catch here is that you would have to develop your own protocol which is not ideal and why we like UART - because it is already defined for us! </li>
+</ul>
 
 </div>
 
