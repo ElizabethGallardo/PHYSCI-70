@@ -1,58 +1,348 @@
-<!doctype html>
-<html class="no-js" lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PHYSCI 70: Introduction to Digital Fabrication</title>
+  <title>PHYSCI 70: Intro to Digital Fabrication </title>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href="../style.css" rel="stylesheet">
 </head>
-
 <body>
-  <button id="turn-on" name="turnon">Turn On </button>
-  <button id="turn-off" name="turnoff">Turn Off </button>
 
-  <!-- The core Firebase JS SDK is always required and must be listed first -->
-  <script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-app.js"></script>
+  <div class="container-fluid">
+    <h3>Week 10: Networking and Communication (IoT) </h3> <br> 
 
-  <!-- TODO: Add SDKs for Firebase products that you want to use
-   https://firebase.google.com/docs/web/setup#available-libraries -->
-   <script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-database.js"></script>
+    <img src="./Pool_IsLit.PNG" class="img-responsive margin" style="width:100%" >
 
-   <script>
-  // Your web app's Firebase configuration
-  var firebaseConfig = {
-      apiKey: "AIzaSyBQSS9MPjBRwXxLt_mVy-yavpWjC4qA1lI",
-      authDomain: "esp32-test-70549.firebaseapp.com",
-      databaseURL: "https://esp32-test-70549.firebaseio.com",
-      projectId: "esp32-test-70549",
-      storageBucket: "esp32-test-70549.appspot.com",
-      messagingSenderId: "1001140848250",
-      appId: "1:1001140848250:web:26fd1948a18333f79c9dc3",
-      measurementId: "G-5DR7XRQ22L"
-  };
-  
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
+    <div class="row" 
+    style=" padding-top: 20px;
+    padding-right: 20%;
+    padding-left: 20%;">
 
-  // Get a database reference to our blog
-  var ref = firebase.database().ref("/");
+    <h1> HARDWARE  </h1>
+    I used an RGB LED strip that has a sticky backing that can be attached to the pool. The circuit is composed of a couple of transistors, resistors, a 12V power supply, and a Huzzah ESP32 Feather microncontroller. <br>
 
-  // make the buttons call the function below 
-  document.getElementById('turn-on').addEventListener('click', turnOn, false);
-  document.getElementById('turn-off').addEventListener('click', turnOff, false);
+    The LED strip works off 12V. Supplying the LED strip voltages less than 12V produces different intensities of the same colour. Supplying two or three RGB inputs simultaneously leds to different hues. The Huzzah cannot output 12V.Therefore, transistors were used to connect the LED strip to the 12V power supply. By supplying the transistor with a voltage we can open the gate of the transistor to connect the one of the RGB inputs to the 12V supply. To modulate the supply voltage, we use PWM voltage signals to open and close the gate of the transistor at a frequency that would produce the desired light intensity. <br>
 
-  function turnOn(){
-    console.log("turning on");
-    ref.update({
-      "LED_STATUS": "ON"
-    });
+    It's important to calibrate RGB LEDs with the correct resistor. I included resistors connected in series with each of the RGB inputs. The resistors were connected as depicted below. 
+    <img src="./RGBresistors.PNG" class="img-responsive margin" style="width:30%" >
+
+    You should use 3 different resistors, one for each color, although the blue and green have the same specs. An LED (Light Emitting Diode) emits light when an electric current passes through it. The simplest circuit to power an LED is a voltage source with a resistor and an LED in series. Such a resistor is often called a ballast resistor. The ballast resistor is used to limit the current through the LED and to prevent that it burns. If the voltage source is equal to the voltage drop of the LED, no resistor is required.  The resistance of the ballast resistor is easy to calculate with Ohm’s law and Kirchhoff’s circuit laws. The rated LED voltage is subtracted from the voltage source, and then divided by the desired LED operating current: <br>
+    <img src="./LEDConnection.PNG" class="img-responsive margin" style="width:30%" >
+
+    Where V is the voltage source, VLED is the LED voltage and I the LED current. This way you can find the right resistor for LED. (Read more <a href=' http://www.resistorguide.com/resistor-for-led/'>here</a>) <br>
+
+
+    <img src="./RGBStrip_Circuit.PNG" class="img-responsive margin" style="width:100%" >
+    The Huzzah does not have a PWM output. A simulated PWM is available online and parts of the code were used for my final code of the ThisPool_IsLit app. <br>
+
+    It was not always obvious what the pinout was for the Huzzah. If you find code online for any ESP32 device, it is likely that you will have to modify a bit of the code. Pay attention to pinouts specifically. Here is a <a href=' https://learn.adafruit.com/adafruit-huzzah32-esp32-feather/pinouts?view=all'>Huzzah pinout reference </a> that may be useful. 
+
+    
+
+
+
+    <h1> WIRELESS NETWORKING  </h1>
+
+    <h2> LAN SERVER  </h2>
+    I followed the following <a href='https://nathanmelenbrink.github.io/ps70/10_networking/huzzah1.html'>tutorial</a> to learn how to setup a local area network server.  <br>
+
+    Download my code to turn on/off the LED using LAN <a href='./SimpleWiFiServer_LED.ino ' download > HERE! </a>
+    
+
+    Click <a href='./index - LEDtest.html'>here</a> to turn this LED ON and off from wherever you are! (URL: https://esp32-test-70549.firebaseio.com) <br>
+
+
+    <h2> REMOTE SERVER (USING FIREBASE)  </h2>
+
+    I followed the following <a href='https://nathanmelenbrink.github.io/ps70/10_networking/huzzah1b.html'>tutorial </a>to learn how to setup a local area network server.  <br>
+
+    To do the same as above but using Firebase instead of LAN, download my code <a href='./FireBase_LED.ino ' download > HERE! </a> <br>
+
+    For this week's project, new code was developed for Arduino, Firebase, and HTML. Download my Arduino code <a href='./ThisPoolIsLit_Code.ino ' download > HERE! </a> Also, see below for the full code. 
+
+    Click here to access the <a href='./index - MyPoolIsLit.html'><b>ThisPool_IsLit app</b></a> (URL: https://thispool-islit.firebaseio.com) <br>
+    
+
+    <h1> SOFTWARE  </h1>
+    <h2> ARDUINO IDE </h2>
+    <pre><code class="language-arduino">
+      #include <WiFi.h>                                 // esp32 library
+      #include <FirebaseESP32.h>                        // firebase library
+
+      #define FIREBASE_HOST "https://thispool-islit.firebaseio.com"                 // the project name address from firebase id
+      #define FIREBASE_AUTH "A6N4gaqv6Q0sKA5Ng5RRmYnXZl4H5N0A0gyFlwP8"              // the secret key generated from firebase
+      #define WIFI_SSID "epistek"                                                   // input your home or public wifi name
+      #define WIFI_PASSWORD "9542353260"                                            // password of wifi ssid
+
+      String fireString = "";                                                       // led status received from firebase
+      int fireInt = 0;
+      int ledpin = 5;
+
+
+      // Set up the rgb led names
+      uint8_t ledR = 4;
+      uint8_t ledG = 5;
+      uint8_t ledB = 18;
+
+      uint8_t ledArray[3] = {1, 2, 3}; // three led channels
+
+      const boolean invert = true; // set true if common anode, false if common cathode
+
+      uint8_t color = 0;           // a value from 0 to 255 representing the hue
+      uint32_t R, G, B;            // the Red Green and Blue color components
+      uint8_t brightness = 255;    // 255 is maximum brightness, but can be changed.  Might need 256 for common anode to fully turn off.
+
+
+      //Define FirebaseESP32 data object
+      FirebaseData firebaseData;
+
+      void setup() {
+      Serial.begin(115200);
+      delay(1000);
+
+      ledcAttachPin(ledR, 1); // assign RGB led pins to channels
+      ledcAttachPin(ledG, 2);
+      ledcAttachPin(ledB, 3);
+
+      // Initialize channels
+      // channels 0-15, resolution 1-16 bits, freq limits depend on resolution
+      // ledcSetup(uint8_t channel, uint32_t freq, uint8_t resolution_bits);
+      ledcSetup(1, 12000, 8); // 12 kHz PWM, 8-bit resolution
+      ledcSetup(2, 12000, 8);
+      ledcSetup(3, 12000, 8);
+
+      WiFi.begin(WIFI_SSID, WIFI_PASSWORD);                          // try to connect with wifi
+
+      Serial.print("Connecting to ");
+      Serial.print(WIFI_SSID);
+      while (WiFi.status() != WL_CONNECTED) {
+      Serial.print(".");
+      delay(500);
+    }
+
+    Serial.println();
+    Serial.print("Connected to ");
+    Serial.println(WIFI_SSID);
+    Serial.print("IP Address is : ");
+    Serial.println(WiFi.localIP());                                // print local IP address
+    Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH);                  // connect to firebase
+    Firebase.reconnectWiFi(true);
+    Firebase.set(firebaseData, "/LED_INTENSITY", "100");          // set initial string of "100"
+    Firebase.set(firebaseData, "/LED_RED", "0");                  // set initial string "0" is off
+    Firebase.set(firebaseData, "/LED_GREEN", "0");                // set initial string "0" is off
+    Firebase.set(firebaseData, "/LED_BLUE", "0");                 // set initial string of "0" is off
   }
 
-  function turnOff(){
-    console.log("turning off");
-    ref.update({
-      "LED_STATUS": "OFF"
-    });
-  } 
-</script>
+  void loop() {
+
+  Firebase.get(firebaseData, "/LED_RED");                      // get led_red input from firebase
+  fireString = firebaseData.stringData();                      // change to e.g. intData() or boolData()
+  Serial.println("R: " + fireString);
+  ledcWrite(1, fireString.toInt());
+  delay(100);
+
+  Firebase.get(firebaseData, "/LED_GREEN");                      // get led_red input from firebase
+  fireString = firebaseData.stringData();                      // change to e.g. intData() or boolData()
+  Serial.println("G: " + fireString);
+  ledcWrite(2, fireString.toInt());
+  delay(100);
+
+  Firebase.get(firebaseData, "/LED_BLUE");                      // get led_red input from firebase
+  fireString = firebaseData.stringData();                      // change to e.g. intData() or boolData()
+  Serial.println("B: " + fireString);
+  ledcWrite(3, fireString.toInt());
+  delay(100);
+  //
+  //  Serial.println("Starting color fade loop.");
+  //
+  // for (color = 0; color < 255; color++) { // Slew through the color spectrum
+  //
+  //  hueToRGB(color, brightness);  // call function to convert hue to RGB
+  //
+  //  // write the RGB values to the pins
+  //  ledcWrite(1, R); // write red component to channel 1, etc.
+  //  ledcWrite(2, G);
+  //  ledcWrite(3, B);
+  //
+  //delay(10000); // full cycle of rgb over 256 colors takes 26 seconds
+  // }
+}
+
+// Courtesy http://www.instructables.com/id/How-to-Use-an-RGB-LED/?ALLSTEPS
+// function to convert a color to its Red, Green, and Blue components.
+
+void hueToRGB(uint8_t hue, uint8_t brightness)
+{
+  uint16_t scaledHue = (hue * 6);
+  uint8_t segment = scaledHue / 256; // segment 0 to 5 around the
+  // color wheel
+  uint16_t segmentOffset =
+  scaledHue - (segment * 256); // position within the segment
+
+  uint8_t complement = 0;
+  uint16_t prev = (brightness * ( 255 -  segmentOffset)) / 256;
+  uint16_t next = (brightness *  segmentOffset) / 256;
+
+  if (invert)
+  {
+    brightness = 255 - brightness;
+    complement = 255;
+    prev = 255 - prev;
+    next = 255 - next;
+  }
+
+  switch (segment ) {
+  case 0:      // red
+  R = brightness;
+  G = next;
+  B = complement;
+  break;
+  case 1:     // yellow
+  R = prev;
+  G = brightness;
+  B = complement;
+  break;
+  case 2:     // green
+  R = complement;
+  G = brightness;
+  B = next;
+  break;
+  case 3:    // cyan
+  R = complement;
+  G = prev;
+  B = brightness;
+  break;
+  case 4:    // blue
+  R = next;
+  G = complement;
+  B = brightness;
+  break;
+  case 5:      // magenta
+  default:
+  R = brightness;
+  G = complement;
+  B = prev;
+  break;
+}
+}
+</code></pre>
+
+<h2> HTML </h2>
+<pre><code class="language-markup">
+      <!doctype html>
+    <html class="no-js" lang="en">
+    <head>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>PHYSCI 70: Introduction to Digital Fabrication</title>
+    </head>
+
+    <body>
+      <button id="turn-on" name="turnon">Turn On </button>
+      <button id="turn-off" name="turnoff">Turn Off </button>
+
+      <table><tr><td>
+        <label for="red">Red:</label>
+      </td>
+      <td>
+        <input id="red" name="red" type="text"/>
+      </td>
+    </tr>
+    <td>
+      <label for="red">Green:</label>
+    </td>
+    <td>
+      <input id="green" name="green" type="text"/>
+    </td>
+    </tr>
+    <tr>
+      <td><label for="blue">Blue:</label></td>
+      <td> <input id="blue" name="blue" type="text"/></td>
+    </tr>
+    </table>  
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-app.js"></script>
+
+      <!-- TODO: Add SDKs for Firebase products that you want to use
+       https://firebase.google.com/docs/web/setup#available-libraries -->
+       <script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-database.js"></script>
+
+       <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+            apiKey: "AIzaSyAe92CoNO05wR-r_wqFDxD-AththWxZNLU",
+            authDomain: "thispool-islit.firebaseapp.com",
+            databaseURL: "https://thispool-islit.firebaseio.com",
+            projectId: "thispool-islit",
+            storageBucket: "thispool-islit.appspot.com",
+            messagingSenderId: "697967224461",
+            appId: "1:697967224461:web:0d01309ffa60994258e4c4",
+            measurementId: "G-V1RT8NBYVV"
+        };
+      
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+
+      // Get a database reference to our blog
+      var ref = firebase.database().ref("/");
+
+      // make the buttons call the function below 
+      document.getElementById('turn-on').addEventListener('click', turnOn, false);
+      document.getElementById('turn-off').addEventListener('click', turnOff, false);
+
+      // make the buttons call the function below 
+      document.getElementById('red').addEventListener('change', sendRed, false);
+      document.getElementById('green').addEventListener('change', sendGreen, false);
+      document.getElementById('blue').addEventListener('change', sendBlue, false);
+
+      function turnOn(){
+        console.log("turning on");
+        ref.update({
+          "LED_STATUS": "ON"
+        });
+      }
+
+      function turnOff(){
+        console.log("turning off");
+        ref.update({
+          "LED_STATUS": "OFF"
+        });
+      } 
+
+      function sendRed(e){
+        console.log("sending Red");
+        ref.update({
+          "LED_RED": e.target.value
+        });
+      } 
+
+      function sendGreen(e){
+        console.log("sending Green");
+        ref.update({
+          "LED_GREEN": e.target.value
+        });
+      } 
+
+      function sendBlue(e){
+        console.log("sending Blue");
+        ref.update({
+          "LED_BLUE": e.target.value
+        });
+      } 
+    </script>
+
+    </body>
+</code></pre>
+
+
+</div>
+
+<br><p> Go back to <a href='../index.html'>main page</a>. </p> 
 
 </body>
+</html>
