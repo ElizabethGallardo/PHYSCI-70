@@ -28,10 +28,10 @@
     The LED strip works off 12V. Supplying the LED strip voltages less than 12V produces different intensities of the same colour. Supplying two or three RGB inputs simultaneously leds to different hues. The Huzzah cannot output 12V.Therefore, transistors were used to connect the LED strip to the 12V power supply. By supplying the transistor with a voltage we can open the gate of the transistor to connect the one of the RGB inputs to the 12V supply. To modulate the supply voltage, we use PWM voltage signals to open and close the gate of the transistor at a frequency that would produce the desired light intensity. <br>
 
     It's important to calibrate RGB LEDs with the correct resistor. I included resistors connected in series with each of the RGB inputs. The resistors were connected as depicted below. 
-    <img src="./RGBresistors.PNG" class="img-responsive margin" style="width:30%" >
+    <img src="./RGBresistors.png" class="img-responsive margin" style="width:30%" >
 
     You should use 3 different resistors, one for each color, although the blue and green have the same specs. An LED (Light Emitting Diode) emits light when an electric current passes through it. The simplest circuit to power an LED is a voltage source with a resistor and an LED in series. Such a resistor is often called a ballast resistor. The ballast resistor is used to limit the current through the LED and to prevent that it burns. If the voltage source is equal to the voltage drop of the LED, no resistor is required.  The resistance of the ballast resistor is easy to calculate with Ohm’s law and Kirchhoff’s circuit laws. The rated LED voltage is subtracted from the voltage source, and then divided by the desired LED operating current: <br>
-    <img src="./LEDConnection.PNG" class="img-responsive margin" style="width:30%" >
+    <img src="./LEDConnection.png" class="img-responsive margin" style="width:30%" >
 
     Where V is the voltage source, VLED is the LED voltage and I the LED current. This way you can find the right resistor for LED. (Read more <a href=' http://www.resistorguide.com/resistor-for-led/'>here</a>) <br>
 
@@ -40,10 +40,12 @@
     The Huzzah does not have a PWM output. A simulated PWM is available online and parts of the code were used for my final code of the ThisPool_IsLit app. <br>
 
     It was not always obvious what the pinout was for the Huzzah. If you find code online for any ESP32 device, it is likely that you will have to modify a bit of the code. Pay attention to pinouts specifically. Here is a <a href=' https://learn.adafruit.com/adafruit-huzzah32-esp32-feather/pinouts?view=all'>Huzzah pinout reference </a> that may be useful. 
+</div>
 
-    
-
-
+<div class="row" 
+style=" padding-top: 20px;
+padding-right: 20%;
+padding-left: 20%;"> 
 
     <h1> WIRELESS NETWORKING  </h1>
 
@@ -54,7 +56,12 @@
     
 
     Click <a href='./index - LEDtest.html'>here</a> to turn this LED ON and off from wherever you are! (URL: https://esp32-test-70549.firebaseio.com) <br>
+  </div>
 
+  <div class="row" 
+style=" padding-top: 20px;
+padding-right: 20%;
+padding-left: 20%;">
 
     <h2> REMOTE SERVER (USING FIREBASE)  </h2>
 
@@ -339,6 +346,7 @@ void hueToRGB(uint8_t hue, uint8_t brightness)
 
     </body>
 </code></pre>
+</div>
 
 
 </div>
