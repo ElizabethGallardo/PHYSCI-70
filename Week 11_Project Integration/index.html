@@ -97,18 +97,28 @@ Choosing a motor: <br>
   <img src="./patioSketch.png" class="img-responsive margin" style="width:50%" alt="patioSketch">
 
   PROOF OF CONCEPT <br>
-  This goal of the first protoype is to demonstrate that the different aspects of the design work individually. The different aspects include: <br>
-  - Sizing: do all the components fit within the ocnstraints of the pltform size <br>
-  - Sensing: does the photosensing components have enough resolution to detect the difference between "sun" and "shade"? <br>
-  - Crash sensing: does the ultrasonic sensor detect a possible crash? <br>
-  - Movement: do the motors provide enough torque to move the device? <br>
-  - Steering: do we have the means to determine absolute position, orientation, or borders of a map, in which we can instruct the device to move within the patio area?
+  This goal of the first protoype is to demonstrate that the different aspects of the design work individually. The different aspects include: <br> <br>
+
+  1. Sizing: do all the components fit within the constraints of the platform size? <br>
+  <b>I measured the difference in resistance when the photoresistor is in the sun versus when the photoresistor is in the shade.</b>
+  <img src="./photoresistorTest.png" class="img-responsive margin" style="width:50%" alt="photoresistorTest">
+  <b> There was a 2Kohm difference in resistance. However, that got me thinking. In my code, I won't be able to program an absoute signal value to respresent "sun" and "shade". The sun intensity on a given day will vary and I don't want to calibrate the device every day. Instead, the logic will be that on a sunny day, after X hours of sun exposure, the value of sun intensity of the X hours will be taken as the reference. This value will be considered "sun". The device will then move to an area of "shade" which will be designated as a spot where there is at least a 2Kohm difference in resistance. </b> <br>
+  - Sensing: does the photosensing components have enough resolution to detect the difference between "sun" and "shade"? <br> <br>
+
+  2. Crash sensing: does the ultrasonic sensor detect a possible crash? <br>
+
+  3. Movement: do the motors provide enough torque to move the device? <br>
+  Motors are being shipped. No tests were able to be done. However, see above for motor shaft torque required to move a 6Kg load. <br> <br>
+
+  4. Steering: do we have the means to determine absolute position, orientation, or borders of a map, in which we can instruct the device to move within the patio area? <br>
+
+
+  5. Part integration: can all the parts not only fit but also be secured on the device? Placement of output and input devices and ccontrollers. <br>
+  Here is a CAD drawing with rough but appropriate dimensions of all components to get an idea if all the components will fit. <br> <br>
 
   <img src="./sketchV1.png" class="img-responsive margin" style="width:50%" alt="sketchV1">
 
-  CAD <br>
-
-  ELECTRONICS SCHEMATIC <br>
+ A more in detailed schematic of the electronics will be available soon. For now, we estimate a size that will incorporate a Huzzah ESP32 microncontroller, circuitry for the photoresistor, ultrasonic sensor, encoders, and motor drivers. <br>
 
   <h4><b>  PROTOTYPE # 2 </b></h4>
   <h4><b>  PROTOTYPE # 3 </b></h4>
