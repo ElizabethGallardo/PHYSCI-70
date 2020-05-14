@@ -13,7 +13,7 @@ a:visited {
 }
 
 a:hover {
-  color: hotpink;
+  color: #FF5733 ;
   /*text-decoration: underline;*/
 }
 
@@ -57,14 +57,45 @@ body {
 .sticky + .content {
   padding-top: 102px;
 }
+
+label {
+      font-weight: normal;
+      color:darkcyan;
+    }
+
+    td{
+      padding-left: 5px;
+      padding-right: 10px;
+      padding-top: 5px;
+    }
+
+    .circle {
+      width: 30px;
+      height: 30px;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+    }
+
+    .gray {
+      background: gray;
+    }
+
+    .red {
+      background: yellow;
+    }
+
+    .footer {
+      padding-top: 20px;
+    }
 </style>
 
 </head>
 <body>
 
 <div class="top-container">
-  <h1> Shade seeking flower cart </h1>
-  <p> Plants on wheels </p>
+  <h1> Shade Seeking Flower Cart </h1>
+  <p> Plants on Wheels </p>
 </div>
 
 <div class="header" id="myHeader">
@@ -75,7 +106,7 @@ body {
 
 
 <div class="content">
-  <h3>Watch the what a Flower Cart can do!</h3>
+  <h3>Watch the Flower Cart in action!</h3>
 
   <a href='https://www.youtube.com/watch?v=GRSrIwCm4y4&feature=youtu.be' target="_blank" style="color:#666600;"> <img class="mySlides" src="Youtube.PNG" style="width:50%"></a>
 </div>
@@ -94,18 +125,132 @@ body {
   <p><a href='./Code/RandomDrive.ino' download ><b> Random Drive </b> </a></p>
 
   <p><a href='./Code/Motor_SpeedAdjustment.ino' download ><b> Speed Control </b> </a></p>
-  <p><a href='./Code/Motor_fwd_backwd_turn.ino' download ><b> Drive (forwards, backwards,turning) </b> </a></p>
+  <p><a href='./Code/Motor_fwd_backwd_turn.ino' download ><b> Drive (forwards, backwards, turning) </b> </a></p>
+  <p><a href='./Firebase.ino' download ><b> Firebase </b> </a></p>
  
 </div>
 
-<!-- <div class="content">
-<h3> Stay tuned with your plants (Firebase) </h3>
-  <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p><p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>  <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p><p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>   -->
+
+
+<div class="content">  
+<h3>Configure your Flower Cart online </h3> 
+
+<p> Flower Carts know where they are in the world. That means they can gather specific information about that area. Using an API, they gather weather and time information so they can roam your patio in serach for shade when it has recieved enough sunlight. The only thing you have to do is give it your latitudinal and longitudinal coordinates which you can easily get from <a href='https://www.google.com/maps' target="_blank" style="color:#666600;"> Google Maps </a>. Using a Firebase database, your Flower Cart is being updated constantly with information about the weather. Below is the information that is being transmited to your Flower Cart LIVE.</p>
+
+<p style="font-size:20px; color:darkcyan;"">Check you Flower Cart's status </p>
+<table>
+        <tr>
+          <td>Latitude:</td>
+          <td><label id="_USER_LATITUDE"></label></td>
+        </tr>
+        <tr>
+          <td>Longitude:</td>
+          <td><label id="_USER_LONGITUDE"></label></td>
+        </tr>
+        <tr>
+          <td>Time Zone:</td>
+          <td><label id="_USER_TIMEZONE"></label></td>
+        </tr>
+        <tr>
+          <td>Current Time:</td>
+          <td><label id="CURRENT_TIME"></label></td>
+        </tr>
+        <tr>
+          <td>Forecast:</td>
+          <td><label id="FORECAST"></label></td>
+        </tr>
+        <tr>
+          <td>Current Temperature:</td>
+          <td><label id="TEMPERATURE"></label></td>
+        </tr>
+        <tr>
+          <td>Connected To:</td>
+          <td><label id="WIFI_SSID"></label></td>
+        </tr>
+        <tr>
+          <td>Led Status:</td>
+          <td>
+            <div id="LED_STATUS" class="circle"></div>
+          </td>
+        </tr>
+
+      </table>
+
+  <p> Has your Flower Cart gone rogue? Do you need to take control over your Flower Cart? Additional features can be implemented to your Flower Cart to enhance its capabilities. We use Firebase to communicate with the Flower Cart. The buttons below are a simple demonstration of communication with Firebase. The LED that is being turned on and off by clicking the button on this page lives onboard the Flower Cart's - specifically on its microcontroller.</p>
+
+  <div class="footer">
+    <button id="turn-on" name="turnon">Turn On </button>
+    <button id="turn-off" name="turnoff">Turn Off </button>
+  </div>
 </div>
+
 
 <p style="text-align: center; "> <a href='./index - mainPage.html' style="color:#666600; font-family:verdana;font-size: 20px"> main page </a></p>
 
-<script>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/7.14.3/firebase-analytics.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.13.2/firebase-database.js"></script>
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyBQSS9MPjBRwXxLt_mVy-yavpWjC4qA1lI",
+      authDomain: "esp32-test-70549.firebaseapp.com",
+      databaseURL: "https://esp32-test-70549.firebaseio.com",
+      projectId: "esp32-test-70549",
+      storageBucket: "esp32-test-70549.appspot.com",
+      messagingSenderId: "1001140848250",
+      appId: "1:1001140848250:web:068cfc408b92e5299c9dc3",
+      measurementId: "G-QKM9L4P7CB"
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+    firebase.analytics();
+
+    // Get a database reference to our blog
+    var ref = firebase.database().ref("/");
+
+    // make the buttons call the function below 
+    document.getElementById('turn-on').addEventListener('click', turnOn, false);
+    document.getElementById('turn-off').addEventListener('click', turnOff, false);
+
+    // populate values
+    [...document.getElementsByTagName('label')]
+      .forEach(elem => {
+        ref.child(elem.id).on('value', function (snapshot) {
+          var value = snapshot.val();
+          document.getElementById(elem.id).innerText = value;
+        });
+      });
+
+    ref.child('LED_STATUS').on('value', function (snapshot) {
+      var value = snapshot.val();
+      document.getElementById('LED_STATUS').className = value === 'ON' ? 'circle red' : 'circle gray';
+    });
+
+    function turnOn() {
+      console.log("turning on");
+      ref.update({
+        "LED_STATUS": "ON"
+      });
+    }
+
+    function turnOff() {
+      console.log("turning off");
+      ref.update({
+        "LED_STATUS": "OFF"
+      });
+    } 
+  </script>
+
+
+  <script>
 window.onscroll = function() {myFunction()};
 
 var header = document.getElementById("myHeader");
@@ -119,7 +264,6 @@ function myFunction() {
   }
 }
 </script>
-
 
 </body>
 </html>
